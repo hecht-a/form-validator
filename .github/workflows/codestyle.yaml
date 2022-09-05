@@ -16,12 +16,6 @@ jobs:
       - name: Checkout the project
         uses: actions/checkout@v2
 
-      - name: Setting the token for installing private package
-        run: sed -i 's/NPM_AUTH_TOKEN=.*/NPM_AUTH_TOKEN=${{ secrets.NPM_AUTH_TOKEN }}/' .env
-
-      - name: Install the github token
-        run: make token
-
       - name: Install the Node.js dependencies
         run: make install
 

@@ -27,9 +27,6 @@ jobs:
       - name: Setting the token for installing package on github
         run: sed -i 's/NPM_TOKEN=.*/NPM_TOKEN=${{ secrets.NPM_TOKEN }}/' .env
 
-      - name: Install the github token
-        run: make token
-
       - name: Install the npmjs token
         run: make npmjs
 
