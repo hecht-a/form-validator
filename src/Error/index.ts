@@ -10,4 +10,8 @@ export class Error {
         return this._error
     }
 
+    public toString() {
+        return `${this.error.replace('{champ}', this.field)}`
+    }
+
 }

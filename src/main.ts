@@ -28,6 +28,12 @@ form.addEventListener('submit', (e) => {
     validator.addRule('length', length, 10)
 
     validator.setRules('name', ['required', 'length'])
+    validator.initErrorMessages({
+        required: 'Le champ {champ} est requis',
+        length: "Le champ {champ} est trop long"
+    })
 
     validator.validate()
+
+    console.log(validator.errors)
 })

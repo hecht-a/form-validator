@@ -3,5 +3,5 @@
  * @return {boolean}
  */
 export function required(data: string): boolean {
-	return data !== "" && data !== null && data !== undefined && data !== " "
+	return data === "" || data === null || data === undefined || data === " "
 }
