@@ -30,6 +30,6 @@ jobs:
         run: make types
 
       - name: Publish the package
-        run: 'make publish-npmjs || true'
+        run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
