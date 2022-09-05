@@ -3,7 +3,7 @@ name: Package npmjs
 on:
   push:
     branches:
-      - latest
+      - master
 
 
 jobs:
