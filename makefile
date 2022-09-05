@@ -4,15 +4,15 @@ PACKAGE_VERSION=$(shell cat package.json | grep -i version | sed -e "s/ //g" | c
 
 .PHONY: install
 install:
-	pnpm install
+	yarn install
 
 .PHONY: build
 build:
-	pnpm run build
+	yarn run build
 
 .PHONY: lint
 lint:
-	pnpm run lint
+	yarn run lint
 
 .PHONY: npmjs
 npmjs:
@@ -30,4 +30,4 @@ github-tag:
 
 .PHONY: types
 types:
-	pnpm run types
+	yarn run types
