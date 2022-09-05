@@ -15,20 +15,10 @@ jobs:
       - name: Checkout the project
         uses: actions/checkout@v2
 
-      - name: Register the current Git user name
-        run: git config user.name ${{ secrets.WORKFLOW_GITHUB_USERNAME }}
-
-      - name: Register the current Git user email
-        run: git config user.email ${{ secrets.WORKFLOW_GITHUB_EMAIL }}
-
-      - name: Setting the token for installing package on npmjs
-        run: sed -i 's/NPMJS_AUTH_TOKEN=.*/NPMJS_AUTH_TOKEN=${{ secrets.NPMJS_AUTH_TOKEN }}/' .env
-
-      - name: Setting the token for installing package on github
-        run: sed -i 's/NPM_TOKEN=.*/NPM_TOKEN=${{ secrets.NPM_TOKEN }}/' .env
-
-      - name: Install the npmjs token
-        run: make npmjs
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Install the dependencies
         run: make install
@@ -41,3 +31,5 @@ jobs:
 
       - name: Publish the package
         run: 'make publish-npmjs || true'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

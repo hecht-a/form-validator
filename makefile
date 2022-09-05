@@ -14,11 +14,6 @@ build:
 lint:
 	yarn run lint
 
-.PHONY: npmjs
-npmjs:
-	echo "//registry.npmjs.org/:_authToken=$$NPM_TOKEN" >> .npmrc
-	echo "@hecht-a:registry=https://registry.npmjs.org/" >> .npmrc
-
 .PHONY: publish-npmjs
 publish-npmjs:
 	yarn publish --access public --registry https://registry.npmjs.org/ --new-version $(PACKAGE_VERSION) --non-interactive
