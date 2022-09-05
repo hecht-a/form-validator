@@ -63,7 +63,7 @@ export class Validator {
      * @param {string} fieldValue
      * @private
      */
-    private runValidator(cbName: string, field: string, fieldValue: string): void {
+    private runValidator(cbName: string, field: string, fieldValue: any): void {
         const rule = this.rules[cbName]
 
         if(rule.cb(fieldValue, ...rule.optionalParams ?? [])) {
@@ -78,11 +78,8 @@ export class Validator {
         for (const field in this._rulesMapping) {
             this._rulesMapping[field].forEach((cbName) => {
                 const fieldValue = this.form.get(field)
-                if (!fieldValue) {
-                    return
-                }
 
-                this.runValidator(cbName, field, fieldValue.toString())
+                this.runValidator(cbName, field, fieldValue)
             })
         }
     }
