@@ -109,7 +109,7 @@ export class Validator {
 			this._rulesMapping[field].forEach((cbName) => {
 				const fieldValue = this.form.get(field);
 
-				this.runValidator(cbName, field, fieldValue!.toString());
+				this.runValidator(cbName, field, fieldValue ? fieldValue.toString() : "");
 			});
 		}
 	}
