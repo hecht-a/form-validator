@@ -24,6 +24,7 @@
     "import"
   ],
   "rules": {
+    "max-classes-per-file": 0,
     "@typescript-eslint/no-shadow": 0,
     "@typescript-eslint/no-non-null-assertion": 0,
     "guard-for-in": 0,

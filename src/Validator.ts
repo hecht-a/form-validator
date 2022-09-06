@@ -1,5 +1,28 @@
-import { CallableRule, Rules } from "../types";
-import { Error } from "../Error";
+type CallableRule = ((data: string, ...args: unknown[]) => boolean);
+
+type Rule = {
+	cb: CallableRule,
+	optionalParams?: unknown[]
+};
+
+type Rules = Record<string, Rule>;
+
+class Error {
+	constructor(private _field: string, private _error: string) {
+	}
+
+	public get field(): string {
+		return this._field;
+	}
+
+	public get error(): string {
+		return this._error;
+	}
+
+	public toString(): string {
+		return `${this.error.replace("{champ}", this.field)}`;
+	}
+}
 
 export class Validator {
 	private _rules: Rules = {};
@@ -113,3 +136,5 @@ export class Validator {
 		this._rulesMapping[input] = [rule];
 	}
 }
+
+export default Validator;

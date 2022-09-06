@@ -16,12 +16,7 @@ lint:
 
 .PHONY: publish-npmjs
 publish-npmjs:
-	yarn publish --access public --registry https://registry.npmjs.org/ --new-version $(PACKAGE_VERSION) --non-interactive
-
-.PHONY: github-tag
-github-tag:
-	git tag -a v$(PACKAGE_VERSION) -m "update to v$(PACKAGE_VERSION)"
-	git push origin v$(PACKAGE_VERSION)
+	yarn publish --registry https://registry.npmjs.org/ --access public  --new-version $(PACKAGE_VERSION) --non-interactive
 
 .PHONY: types
 types:
