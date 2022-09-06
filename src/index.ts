@@ -1,2 +1,4 @@
 export * from "./Validator";
-export * from "./Error";
+
+import {Validator} from './Validator'
+export default Validator
