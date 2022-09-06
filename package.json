@@ -4,8 +4,8 @@
   "description": "This is a package to validate forms in frontend.",
   "private": false,
   "type": "module",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "main": "lib/Validator.js",
+  "types": "lib/Validator.d.ts",
   "files": [
     "lib"
   ],
