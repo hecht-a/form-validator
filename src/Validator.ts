@@ -1,4 +1,4 @@
-type CallableRule = ((data: string, ...args: unknown[]) => boolean);
+type CallableRule = ((data: string, ...args: unknown[]) => boolean | Promise<boolean>);
 
 type Rule = {
 	cb: CallableRule,
@@ -93,10 +93,10 @@ export class Validator {
      * @param {string} fieldValue
      * @private
      */
-	private runValidator(cbName: string, field: string, fieldValue: string): void {
+	private async runValidator(cbName: string, field: string, fieldValue: string): Promise<void> {
 		const rule = this.rules[cbName];
 
-		if (rule.cb(fieldValue, ...rule.optionalParams ?? [])) {
+		if (await rule.cb(fieldValue, ...rule.optionalParams ?? [])) {
 			this.addError(field, this._errorMessages[cbName]);
 		}
 	}
@@ -104,13 +104,15 @@ export class Validator {
 	/**
      * Check the form validity
      */
-	public validate(): void {
+	public async validate(): Promise<void> {
 		for (const field in this._rulesMapping) {
-			this._rulesMapping[field].forEach((cbName) => {
+			for (const cbName of this._rulesMapping[field]) {
 				const fieldValue = this.form.get(field);
 
-				this.runValidator(cbName, field, fieldValue ? fieldValue.toString() : "");
-			});
+				await this.runValidator(cbName, field, fieldValue
+					? fieldValue.toString()
+					: "");
+			}
 		}
 	}
 
