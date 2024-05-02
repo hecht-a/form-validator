@@ -20,6 +20,10 @@ class Error {
 	}
 
 	public toString(): string {
+		if (!this.error.includes("{champ}")) {
+			return this.error;
+		}
+
 		return `${this.error.replace("{champ}", this.field)}`;
 	}
 }
