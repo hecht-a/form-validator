@@ -1,6 +1,6 @@
 {
   "name": "@hecht-a/form-validator",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "This is a package to validate forms in frontend.",
   "private": false,
   "main": "lib/Validator.js",
